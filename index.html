@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F3EDE2">
+  <title>Mariana &amp; João · 21.12.2026</title>
+  <meta name="description" content="Convite digital de Mariana &amp; João — abra o envelope e descubra o menu da noite.">
+
+  <!-- Tipografia: Cardo (empacotada em assets/fonts, igual ao cardápio aprovado) + Cormorant Garamond via Google Fonts (apenas itálicos de apoio; se offline, usa Cardo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <noscript><style>.is-loading{opacity:1!important}</style></noscript>
+</head>
+
+<body class="is-loading">
+
+  <!-- Fundo: papel artesanal off-white -->
+  <div class="paper-bg" aria-hidden="true"></div>
+  <canvas id="dust" aria-hidden="true"></canvas>
+
+  <main id="stage" class="stage" data-phase="intro">
+
+    <!-- ══════════ CENA 1 e 2 · ENVELOPE ══════════ -->
+    <section id="env-scene" class="env-scene" aria-label="Envelope do convite">
+      <div class="env-ground" id="env-ground" aria-hidden="true"></div>
+
+      <div class="env" id="env" role="button" tabindex="0" aria-label="Toque para abrir o convite">
+        <div class="env-tilt" id="env-tilt">
+
+          <!-- interior do envelope -->
+          <div class="env-back" id="env-back"></div>
+
+          <!-- cartão (capa do convite) que sai de dentro do envelope -->
+          <div class="env-card" id="env-card"></div>
+          <div class="env-slot" id="env-slot"></div>
+
+          <!-- frente do envelope (bolso com as três abas dobradas) -->
+          <div class="env-front" id="env-front">
+            <svg class="pocket" viewBox="0 0 100 68" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="gL" x1="0" y1="0" x2="1" y2="0.4">
+                  <stop offset="0" stop-color="#6d1828"/><stop offset="1" stop-color="#58101f"/>
+                </linearGradient>
+                <linearGradient id="gR" x1="1" y1="0" x2="0" y2="0.4">
+                  <stop offset="0" stop-color="#6a1626"/><stop offset="1" stop-color="#54101d"/>
+                </linearGradient>
+                <linearGradient id="gB" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0" stop-color="#5e1222"/><stop offset="1" stop-color="#781c2d"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,0 L51,36 L0,68 Z" fill="url(#gL)"/>
+              <path d="M100,0 L49,36 L100,68 Z" fill="url(#gR)"/>
+              <path d="M0,68 L50,31 L100,68 Z" fill="url(#gB)"/>
+              <path d="M0,68 L50,31 L100,68" fill="none" stroke="rgba(255,225,215,.16)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+              <path d="M0,0 L51,36 L0,68 M100,0 L49,36 L100,68" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            </svg>
+            <div class="pocket-texture"></div>
+            <svg class="env-flora env-flora-l" aria-hidden="true"><use href="#flora-bl"/></svg>
+            <svg class="env-flora env-flora-r" aria-hidden="true"><use href="#flora-bl"/></svg>
+            <p class="env-names">Mariana <span>&amp;</span> João</p>
+          </div>
+
+          <!-- aba superior (gira em 3D) -->
+          <div class="flap-wrap" id="flap-wrap">
+            <div class="flap" id="flap">
+              <div class="flap-face flap-out"><div class="pocket-texture"></div></div>
+              <div class="flap-face flap-in"></div>
+              <div class="seal" id="seal">
+                <div class="seal-ring"></div>
+                <img src="assets/img/monogram.png" width="2448" height="2226" alt="" draggable="false">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="env-hint" id="env-hint">Toque para abrir</p>
+      </div>
+    </section>
+
+    <!-- ══════════ CENAS 3 a 5 · CONVITE (LIVRO) ══════════ -->
+    <section id="book-scene" class="book-scene" aria-label="Convite" aria-hidden="true">
+      <div class="book" id="book">
+        <div class="book-shadow" aria-hidden="true"></div>
+
+        <!-- página direita: cardápio -->
+        <article class="pg pg-menu" id="pg-menu" aria-label="Menu do jantar">
+          <div class="art art-menu">
+            <div class="frame"></div>
+            <svg class="flora flora-tr" aria-hidden="true"><use href="#flora-tr"/></svg>
+            <svg class="flora flora-bl" aria-hidden="true"><use href="#flora-bl"/></svg>
+
+            <div class="menu-scroll" id="menu-scroll">
+              <div class="menu-inner" id="menu-inner">
+                <header class="m-head">
+                  <img class="m-mono" src="assets/img/monogram.png" width="2448" height="2226" alt="Monograma MJ" draggable="false">
+                  <p class="m-names">Mariana <span>&amp;</span> João</p>
+                  <p class="m-date">21.12.2026</p>
+                  <h2 class="m-title"><img src="assets/svg/menu-title.svg" alt="Menu" draggable="false"></h2>
+                </header>
+
+                <section class="m-sec">
+                  <h3>Salgados quentes</h3>
+                  <p class="row"><span>Travesseirinho de queijo</span><span>Bolinha de queijo e presunto</span></p>
+                  <p class="row"><span>Coxinha de frango</span><span>Mini quibe com queijo</span></p>
+                </section>
+
+                <section class="m-sec">
+                  <h3>Finger foods</h3>
+                  <p class="row"><span>Bruschetta</span><span>Dadinho de tapioca com geleia de cupuaçu</span></p>
+                </section>
+
+                <section class="m-sec">
+                  <h3>Pratos principais</h3>
+                  <p class="row"><span>Medalhões de filé ao molho roquefort</span></p>
+                  <p class="row"><span>Camarão com penne ao limoncello</span></p>
+                  <p class="row"><span>Risoto de filhote com tucupi e jambu</span></p>
+                </section>
+
+                <section class="m-sec">
+                  <h3>Acompanhamentos</h3>
+                  <p class="row"><span>Arroz branco</span><span>Batata palha</span><span>Farofa</span><span>Salada tropical</span></p>
+                </section>
+
+                <section class="m-sec">
+                  <h3>Docinhos</h3>
+                  <p class="row"><span>Brigadeiro</span><span>Casadinho</span><span>Uvinha</span><span>Cupuaçu</span></p>
+                </section>
+
+                <section class="m-sec">
+                  <h3>Sobremesas</h3>
+                  <p class="row"><span>Chocorango</span><span>Delícia de cupuaçu</span></p>
+                </section>
+
+                <section class="m-sec">
+                  <h3>Bebidas</h3>
+                  <p class="row"><span>Água sem gás</span><span>Suco de acerola</span><span>Suco de cupuaçu</span><span>Refrigerante normal e zero</span></p>
+                  <p class="row"><span>Vinho</span><span>Espumante</span><span>Whisky</span><span>Cerveja Amstel (2 por convidado)</span></p>
+                </section>
+
+                <p class="m-thanks">Agradecemos por compartilhar este momento conosco. Desejamos um excelente jantar!</p>
+              </div>
+            </div>
+            <div class="scroll-fade" aria-hidden="true"></div>
+          </div>
+          <div class="cast" id="cast" aria-hidden="true"></div>
+          <div class="spine-shade" aria-hidden="true"></div>
+        </article>
+
+        <!-- folha que vira: frente = capa · verso = interior da capa -->
+        <div class="leaf" id="leaf">
+          <div class="face front" id="leaf-front" aria-label="Capa do convite">
+            <div class="shade" id="shade-front"></div>
+          </div>
+          <div class="face back" id="leaf-back" aria-hidden="true">
+            <div class="art art-inside">
+              <div class="frame"></div>
+              <svg class="flora flora-tl" aria-hidden="true"><use href="#flora-tl"/></svg>
+              <svg class="flora flora-br" aria-hidden="true"><use href="#flora-br"/></svg>
+              <img class="in-mark" src="assets/img/monogram.png" width="2448" height="2226" alt="" aria-hidden="true" draggable="false">
+              <p class="in-thanks">Agradecemos por compartilhar este momento conosco. Desejamos um excelente jantar!</p>
+            </div>
+            <div class="shade" id="shade-back"></div>
+            <div class="spine-shade spine-shade-l" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ A NOSSA HISTÓRIA (continua o convite depois do menu) ══════════ -->
+    <section class="story" id="story" aria-label="A nossa história" aria-hidden="true">
+      <button class="story-back" id="story-back" type="button" aria-label="Voltar ao convite">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>
+        <span>Voltar ao convite</span>
+      </button>
+
+      <div class="story-scroll" id="story-scroll" tabindex="-1">
+        <article class="story-book">
+
+          <!-- Folha I -->
+          <div class="s-sheet" data-rv>
+            <svg class="flora flora-tr" aria-hidden="true"><use href="#flora-tr"/></svg>
+            <svg class="flora flora-bl" aria-hidden="true"><use href="#flora-bl"/></svg>
+            <header class="s-head">
+              <img class="s-mono" data-rv src="assets/img/monogram-bordo.png" width="1224" height="1113" alt="Monograma MJ" draggable="false">
+              <p class="s-kicker" data-rv>Mariana &amp; João</p>
+              <h2 class="s-title" data-rv>A nossa história</h2>
+              <div class="s-rule" data-rv aria-hidden="true"><i></i><b></b><i></i></div>
+            </header>
+            <p class="s-p s-p--first" data-rv>Mariana e João se encontraram no final de 2024, daqueles encontros que a vida parece preparar em silêncio. O que começou com uma simples conexão logo ganhou espaço em longas conversas, que atravessavam horas sem que percebessem o tempo passar. Foram mais de cinco horas em uma única ligação, entre histórias, reflexões sobre a vida e até conversas sobre psicanálise. Como se, antes mesmo do primeiro encontro, já estivessem descobrindo um no outro um lugar de acolhimento e familiaridade.</p>
+            <p class="s-p" data-rv>Quando finalmente se encontraram, foi no metrô que tudo começou a ganhar forma. Entre um beijo roubado, sorrisos e conversas que fluíam naturalmente, nasceu a certeza de que havia algo especial ali. E, como se já soubesse um pouco do futuro que os esperava, naquele mesmo dia João a pediu em namoro e falou sobre tudo de bonito que ainda viveriam juntos.</p>
+            <p class="s-folio" aria-hidden="true">I</p>
+          </div>
+
+          <!-- Folha II · primeira fotografia -->
+          <div class="s-sheet" data-rv>
+            <svg class="flora flora-tl" aria-hidden="true"><use href="#flora-tl"/></svg>
+            <svg class="flora flora-br" aria-hidden="true"><use href="#flora-br"/></svg>
+            <figure class="s-fig s-fig--evento" data-rv>
+              <div class="s-photo"><img data-src="assets/img/foto-evento.jpg" width="1200" height="1600" decoding="async" alt="Mariana, de vestido vermelho, e João, de terno claro, abraçados e sorrindo em um salão decorado com flores"></div>
+            </figure>
+            <p class="s-p" data-rv>Desde então, foram descobrindo que o amor também mora nos detalhes: na parceria de todos os dias, na cumplicidade dos olhares, nas diferenças que se completam e na leveza de poder ser exatamente quem se é. Entre uma personalidade metódica e outra sempre pronta para uma piada, construíram um jeito só deles de caminhar juntos, tornando a vida mais leve, os dias mais felizes e os sonhos ainda maiores.</p>
+            <p class="s-p" data-rv>Talvez o mais bonito dessa história seja que, desde o início, os dois souberam que queriam construir algo que fosse além do agora. Um amor feito de escolhas, cuidado, respeito e da vontade genuína de compartilhar a vida.</p>
+            <p class="s-folio" aria-hidden="true">II</p>
+          </div>
+
+          <!-- Folha III · o pedido (última fotografia) -->
+          <div class="s-sheet s-sheet--final" data-rv>
+            <svg class="flora flora-tr" aria-hidden="true"><use href="#flora-tr"/></svg>
+            <svg class="flora flora-bl" aria-hidden="true"><use href="#flora-bl"/></svg>
+            <p class="s-p" data-rv>Hoje, celebram o caminho que os trouxe até aqui e a felicidade de saber que ainda há tanto por viver. Afinal, algumas histórias começam por acaso, mas se tornam destino a cada escolha de permanecer.</p>
+            <figure class="s-fig s-fig--pedido" data-rv>
+              <div class="s-photo"><img data-src="assets/img/foto-pedido.jpg" width="904" height="1600" decoding="async" alt="Mariana e João se beijando à beira de um lago, com montanhas e pinheiros ao fundo"></div>
+              <figcaption>E o para sempre começou a ganhar forma.</figcaption>
+            </figure>
+            <div class="s-rule" data-rv aria-hidden="true"><i></i><b></b><i></i></div>
+            <p class="s-closing" data-rv>E esta é apenas a primeira página de tudo o que ainda escreverão juntos.</p>
+            <p class="s-folio" aria-hidden="true">III</p>
+          </div>
+
+          <footer class="s-end" data-rv>
+            <p class="s-date">21.12.2026</p>
+            <button class="s-back" id="story-back-2" type="button">Voltar ao convite</button>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- navegação -->
+    <nav class="nav" id="nav" aria-label="Navegação do convite">
+      <button class="nav-btn" id="btn-prev" type="button" aria-label="Voltar para a capa" disabled>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>
+      </button>
+      <p class="nav-hint" id="nav-hint">Arraste a página ou toque na seta</p>
+      <button class="nav-btn" id="btn-next" type="button" aria-label="Virar a página e ver o menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5"/></svg>
+      </button>
+    </nav>
+
+    <!-- áudio ambiente (desligado por padrão) -->
+    <button class="sound" id="btn-sound" type="button" aria-pressed="false" aria-label="Ligar som ambiente" title="Som ambiente">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="sp" d="M4 9.5h3.2L11.5 6v12l-4.3-3.5H4z"/>
+        <path class="sw sw1" d="M14.6 9.4a3.6 3.6 0 0 1 0 5.2"/>
+        <path class="sw sw2" d="M16.9 7.2a6.7 6.7 0 0 1 0 9.6"/>
+        <path class="sx" d="M15 9.5l5 5M20 9.5l-5 5"/>
+      </svg>
+    </button>
+
+    <!-- painel de volume (abre junto ao botão de som) -->
+    <div class="vol" id="vol-panel" role="group" aria-label="Volume da música" data-on="false">
+      <div class="vol-row">
+        <button class="vol-toggle" id="vol-toggle" type="button" aria-label="Ligar música">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="sp" d="M4 9.5h3.2L11.5 6v12l-4.3-3.5H4z"/>
+            <path class="sw" d="M14.6 9.4a3.6 3.6 0 0 1 0 5.2"/>
+            <path class="sw" d="M16.9 7.2a6.7 6.7 0 0 1 0 9.6"/>
+            <path class="sx" d="M15 9.5l5 5M20 9.5l-5 5"/>
+          </svg>
+        </button>
+        <input class="vol-range" id="vol-range" type="range" min="0" max="100" step="1" value="15" aria-label="Volume" aria-valuetext="15%">
+        <output class="vol-val" id="vol-val" for="vol-range">15%</output>
+      </div>
+      <p class="vol-msg" id="vol-msg" role="status" aria-live="polite" hidden></p>
+    </div>
+  </main>
+
+  <!-- Moldes da capa (clonados via JS para o cartão do envelope e para a folha do livro) -->
+  <template id="tpl-cover">
+    <div class="art art-cover">
+      <div class="frame"></div>
+      <svg class="flora flora-tr" aria-hidden="true"><use href="#flora-tr"/></svg>
+      <svg class="flora flora-bl" aria-hidden="true"><use href="#flora-bl"/></svg>
+      <div class="cover-center">
+        <img class="mono" src="assets/img/monogram.png" width="2448" height="2226" alt="Monograma MJ" draggable="false">
+        <p class="c-names">Mariana <span>&amp;</span> João</p>
+        <p class="c-date">21.12.2026</p>
+        <div class="c-rule" aria-hidden="true"><i></i><b></b><i></i></div>
+        <p class="c-menu">Menu</p>
+      </div>
+      <div class="cover-hint" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"/></svg>
+      </div>
+    </div>
+  </template>
+
+  <script src="assets/js/flora-sprite.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
